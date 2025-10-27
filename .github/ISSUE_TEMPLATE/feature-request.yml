@@ -1,0 +1,19 @@
+name: Feature request / Suggestion / Enhancement
+description: Suggest a new feature or enhancement for the action.
+labels: [enhancement]
+
+body:
+
+- type: markdown
+  attributes:
+    value: |
+      Thank you for taking the time to suggest a new feature or enhancement. To ensure an organized and efficient process, we kindly request that you check the issue tracker before creating a new request to avoid duplicates.
+
+- type: textarea
+  id: proposed-change-description
+  attributes:
+    label: Proposed change description
+    description: A clear and concise description of the proposed change. Please include any relevant motivation, context, or examples. Also, alternative solutions or features you've considered would be appreciated.
+    placeholder: I would like to see a feature that allows customizing the report format.
+  validations:
+    required: true

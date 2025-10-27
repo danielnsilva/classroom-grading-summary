@@ -1,0 +1,64 @@
+name: Bug report
+description: Report any unexpected behavior, errors, or malfunctions you have observed.
+labels: [bug]
+
+body:
+
+- type: markdown
+  attributes:
+    value: |
+      Thank you for taking the time to report a bug. To assist in effectively addressing the issue you have encountered, please provide the following information. Before creating a new issue, we kindly request checking the issue tracker for any existing reports related to the bug.
+
+- type: textarea
+  id: bug-description
+  attributes:
+    label: Bug description
+    description: A clear and concise description of what the bug is.
+    placeholder: I was trying to use the action in my workflow, but it failed with an error.
+  validations:
+    required: true
+
+- type: textarea
+  id: workflow-example
+  attributes:
+    label: Workflow configuration
+    description: Your workflow YAML that reproduces the bug.
+    placeholder: |
+      - name: Classroom Grading Summary
+        uses: danielnsilva/classroom-grading-summary@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          runners: test1,test2
+    render: yaml
+  validations:
+    required: true
+
+- type: textarea
+  id: error-message
+  attributes:
+    label: Error message
+    description: The error message from the GitHub Actions log.
+    placeholder: |
+      Error: Results not found for runner: test1
+      ##[error]Results not found for runner: test1
+    render: Shell
+  validations:
+    required: true
+
+- type: input
+  id: action-version
+  attributes:
+    label: Action version
+    description: The version of the action you are using.
+    placeholder: v1.0.0
+  validations:
+    required: true
+
+- type: input
+  id: runner-os
+  attributes:
+    label: Runner OS
+    description: The operating system of the GitHub Actions runner.
+    placeholder: ubuntu-latest
+  validations:
+    required: true
