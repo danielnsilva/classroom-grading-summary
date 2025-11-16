@@ -2,12 +2,12 @@ import { RunnerData, RunnerResults } from "./types";
 
 function getTestScore(results: RunnerResults): number {
   return results.tests.reduce((acc, test) => {
-    return acc + (test.status === "pass" ? test.points ?? 0 : 0);
+    return acc + (test.status === "pass" ? (test.score ?? test.points ?? 0) : 0);
   }, 0);
 }
 
 function getMaxScoreForTest(results: RunnerResults): number {
-  return results.tests.reduce((acc, test) => acc + (test.points ?? 0), 0);
+  return results.tests.reduce((acc, test) => acc + (test.score ?? test.points ?? 0), 0);
 }
 
 export function generateReport(runnerResults: RunnerData[]): string {

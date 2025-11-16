@@ -12,6 +12,10 @@ Enhance your GitHub Classroom workflow by displaying test results and scores dir
 ```yaml
 - name: Classroom Grading Summary
   uses: danielnsilva/classroom-grading-summary@v1
+  env:
+    TEST1_RESULTS: "${{steps.test1.outputs.result}}"
+    TEST2_RESULTS: "${{steps.test2.outputs.result}}"
+    TEST3_RESULTS: "${{steps.test3.outputs.result}}"
   with:
     token: ${{ secrets.GITHUB_TOKEN }}
     runners: test1,test2,test3
@@ -23,6 +27,17 @@ Enhance your GitHub Classroom workflow by displaying test results and scores dir
 - `token`: GitHub token (default: `${{ github.token }}`)
 - `runners`: Comma-separated list of step IDs (required)
 - `update-comment`: Update existing comment (true) or create new comment (false) (default: `true`)
+
+## Environment Variables
+
+For each runner specified in the `runners` input, you must provide an environment variable with the pattern `{RUNNER_NAME}_RESULTS` containing the base64-encoded test results from the corresponding step output.
+
+This follows the same pattern as the `autograding-grading-reporter` action.
+
+Example: if `runners: test1,test2`, you need:
+
+- `TEST1_RESULTS: "${{steps.test1.outputs.result}}"`
+- `TEST2_RESULTS: "${{steps.test2.outputs.result}}"`
 
 ## Required Permissions
 
@@ -74,6 +89,8 @@ jobs:
         
     - name: Classroom Grading Summary
       uses: danielnsilva/classroom-grading-summary@v1
+      env:
+        TEST1_RESULTS: "${{steps.test1.outputs.result}}"
       with:
         runners: test1
 ```

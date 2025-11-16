@@ -30074,11 +30074,11 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.generateReport = generateReport;
 function getTestScore(results) {
     return results.tests.reduce((acc, test) => {
-        return acc + (test.status === "pass" ? test.points ?? 0 : 0);
+        return acc + (test.status === "pass" ? (test.score ?? test.points ?? 0) : 0);
     }, 0);
 }
 function getMaxScoreForTest(results) {
-    return results.tests.reduce((acc, test) => acc + (test.points ?? 0), 0);
+    return results.tests.reduce((acc, test) => acc + (test.score ?? test.points ?? 0), 0);
 }
 function generateReport(runnerResults) {
     let totalScore = 0;
